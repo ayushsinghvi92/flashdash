@@ -15,10 +15,19 @@ var ensureAuthenticated = function (req, res, next) {
 };
 
 //User's Routes
+
+router.get('/', function(req, res, next){
+    User.findAll()
+    .then(function(users){
+      res.json(users);
+    })
+    .catch(next);
+});
+
 router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next) {
-   Dashboard.findAll( 
+   Dashboard.findAll(
     {where: {userId: req.params.userId},
-    order : 'id ASC'}) 
+    order : 'id ASC'})
    .then(function(boards) {
     res.send(boards);
    })
@@ -38,7 +47,7 @@ router.put('/:userId', ensureAuthenticated, function(req, res, next){
 router.delete('/:userId', ensureAuthenticated, function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
-    return user.destroy(); 
+    return user.destroy();
   })
   .then(function(){
     return req.session.destroy();
@@ -49,7 +58,7 @@ router.delete('/:userId', ensureAuthenticated, function(req, res, next){
 
 //User's Dashboard Routes
 router.post('/:id/dashboard', ensureAuthenticated, function(req, res, next){
-  Dashboard.create({ 
+  Dashboard.create({
       userId: req.params.id,
       name: req.body.name,
       description: req.body.description

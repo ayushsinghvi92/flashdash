@@ -41,7 +41,6 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
     }
 
     obj.saveLayout = function (dashboardId, layout) {
-        console.log(layout)
     	let obj = layout.map(function (e) {
     		return {
                 name: e.name,
@@ -61,5 +60,13 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
     	return $http.put('/api/dashboards/' + dashboardId, obj)
         .then(getData)
     }
+
+    obj.getCharts = function(dashboardId){
+        return $http.get('/api/dashboards/' + dashboardId + '/charts')
+        .then(res => res.data)
+    }
+
+
+
     return obj;
 });

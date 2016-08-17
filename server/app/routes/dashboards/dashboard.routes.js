@@ -3,6 +3,7 @@ const db = require('../../../db')
 const Dashboard = db.model('dashboard')
 const Chart = db.model('chart')
 module.exports = router;
+
 router.get('/:id', function (req,res,next) {
 	Dashboard.findById(req.params.id, {
 		include : [Chart]
@@ -11,6 +12,15 @@ router.get('/:id', function (req,res,next) {
 	.catch(next)
 });
 
+router.get('/:id/charts', function(req, res, next){
+	Chart.findAll({
+		where:{
+			dashboardId: req.params.id
+		}
+	})
+	.then(data => res.send(data))
+	.catch(next)
+})
 
 router.put('/:id', function (req,res,next) { //make this a dashboard instance method
 	let dashboard;

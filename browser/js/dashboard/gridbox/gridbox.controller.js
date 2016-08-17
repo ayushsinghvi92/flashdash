@@ -1,6 +1,5 @@
 app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
     function($scope, DashboardFactory, $timeout) {
-      console.log(dashboard)
       $scope.gridsterOptions = {
         margins: [20, 20],
         columns: 16,
@@ -64,6 +63,21 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
           sizeY: 4
         });
       };
+
+      $scope.createCharts = function(){
+        DashboardFactory.getCharts($scope.dashboard.id)
+        .then(function(res){
+          $scope.charts = res
+        })
+      }
+
+
+      $scope.showCharts = function(){
+        $scope.createCharts()
+      }
+      $scope.blarg = function(){
+        console.log($scope.charts)
+      }
 
       $scope.saveLayout = function () {
         DashboardFactory.saveLayout($scope.dashboard.id, $scope.dashboard.charts)

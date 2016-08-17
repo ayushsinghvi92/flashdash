@@ -14,7 +14,7 @@ module.exports = db.define('chart', {
 	refreshInterval: {
 		type: Sequelize.INTEGER,
 		validate: {
-			min: 1 // in production peg this to ??
+			min: 0 // in production peg this to ??
 		}
 	},
 	type: {

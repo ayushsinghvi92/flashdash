@@ -48,11 +48,11 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
     			refreshInterval: e.refreshInterval || 1000,
     			type: e.type,
     			sizeX: e.sizeX,
-    			sizeY: e.sizeY, 
+    			sizeY: e.sizeY,
     			col: e.col,
     			row: e.row,
                 color: e.color || '#0000ff',
-                xparam: e.xparam, 
+                xparam: e.xparam,
     			dashboardId: dashboardId,
                 yparam: e.yparam
     		}
@@ -64,6 +64,16 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
     obj.getCharts = function(dashboardId){
         return $http.get('/api/dashboards/' + dashboardId + '/charts')
         .then(res => res.data)
+    }
+
+    obj.findLiveCharts = function(chartsArray){
+        var liveChartsArray;
+        console.log('factory got called');
+        chartsArray.forEach(function(elem, index, array){
+            if (elem.refreshInterval > 0) {
+                liveChartsArray.push(elem);
+            }
+        })
     }
 
 

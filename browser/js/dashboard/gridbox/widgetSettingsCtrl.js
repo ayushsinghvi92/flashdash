@@ -28,7 +28,6 @@
         if (!realData) {
           var realData = [data];
         }
-        console.log('this is realData', realData);
         $scope.dataKeys = Object.keys(realData[0]);
         dataInNVD3Format = [{
           values:realData,

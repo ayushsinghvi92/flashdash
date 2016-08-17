@@ -5,6 +5,7 @@
     <button ng-click=clear()>Clear All Widgets</button>
     <button ng-click=showCharts()>Check Charts</button>
     <button ng-click='blarg()'>Console</button>
+    <button ng-click='findLiveCharts()'>Livecharts</button>
     <div gridster="gridsterOptions" class='ng-scope gridster-desktop gridster-loaded'>
     <ul class="with-3d-shadow with-transitions">
       <li gridster-item="widget" ng-repeat="widget in dashboard.charts">

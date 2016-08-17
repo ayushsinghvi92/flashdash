@@ -84,5 +84,13 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
         .then(function (data) {
         })
       }
+
+      $scope.findLiveCharts = function(){
+        DashboardFactory.findLiveCharts($scope.charts)
+        .then(function(res){
+          $scope.liveCharts = res;
+          console.log($scope.liveCharts);
+        })
+      }
     }
   ]);

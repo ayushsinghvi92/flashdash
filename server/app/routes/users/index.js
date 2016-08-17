@@ -24,7 +24,7 @@ router.get('/', function(req, res, next){
     .catch(next);
 });
 
-router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next) {
+router.get('/:userId/dashboards',ensureAuthenticated, function (req, res, next) {
    Dashboard.findAll(
     {where: {userId: req.params.userId},
     order : 'id ASC'})

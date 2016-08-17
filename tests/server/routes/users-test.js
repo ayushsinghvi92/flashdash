@@ -49,5 +49,18 @@ describe('Users Route', function () {
             });
     });
 
+    it('GETs all dashboards when they have none', function(done){
+      agent.get('/api/users/1/dashboards')
+        .expect(200)
+          .end(function (err, res) {
+              if (err) return done(err);
+              expect(res.body).to.be.instanceof(Array);
+              expect(res.body).to.have.length(0);
+              done();
+            });
+    })
+
   });
+
+
 });

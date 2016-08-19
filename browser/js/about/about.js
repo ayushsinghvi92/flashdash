@@ -2,7 +2,7 @@ app.config(function ($stateProvider) {
 
     // Register our *about* state.
     $stateProvider.state('about', {
-        url: '/about',
+        url: '/',
         controller: 'AboutController',
         templateUrl: 'js/about/about.html'
     });

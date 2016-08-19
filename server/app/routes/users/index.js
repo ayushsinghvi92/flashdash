@@ -17,7 +17,6 @@ router.get('/:userId/dashboards', ensureAuthenticated, ensureRightUser, function
    .then(function(boards) {
     res.send(boards);
    })
-
    .catch(next);
 });
 
@@ -28,6 +27,12 @@ router.put('/:userId', ensureAuthenticated, ensureRightUser, function(req, res, 
   })
   .then(()=> res.send(200))
   .catch(next);
+})
+
+router.post('/signup', function(req, res, next){
+  User.create(req.body)
+  .then( () => res.send(200))
+  .catch(next)
 })
 
 router.delete('/:userId', ensureAuthenticated, ensureRightUser, function(req, res, next){

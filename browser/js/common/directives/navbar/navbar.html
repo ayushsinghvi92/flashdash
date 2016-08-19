@@ -1,5 +1,6 @@
 
 <nav class="navbar navbar-static-top bg ">
+
     <div class="container ">
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
@@ -10,6 +11,7 @@
             </li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+        <a ui-sref="signup" ng-show="!user" class="btn login-button">New User</a>
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>

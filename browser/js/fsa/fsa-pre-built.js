@@ -88,7 +88,7 @@
                 if (err.status) {
                     growl.error(err.data, {title: err.statusText || '', ttl: 1000, disableCountDown: true});
                 }
-                $state.go('login');
+                $state.go('about');
             });
         };
 

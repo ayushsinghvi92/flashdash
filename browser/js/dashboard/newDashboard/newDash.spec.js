@@ -27,8 +27,8 @@ describe('New Dashboard', function () {
 				$scope.submit();
 				expect($state._mockUrl).not.to.equal('/dashboard')
 				$scope.digest();
-				expect($state._mockUrl).to..equal('/dashboard')
+				expect($state._mockUrl).to.equal('/dashboard')
 			})
 		})
 	})
-})
+});

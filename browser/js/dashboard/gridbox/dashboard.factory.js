@@ -7,7 +7,11 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         }
         return $http.get(link)
         .then(getData)
-        .catch(() => [])
+        .then(function(data){
+            let x = obj.findDataToGraph(data);
+            return x;
+        })
+        .catch(res => [])
     }
 
     obj.findIndexToLoad = function (arr, nameToLoad) {
@@ -53,11 +57,11 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     			refreshInterval: e.refreshInterval || 1000,
     			type: e.type,
     			sizeX: e.sizeX,
-    			sizeY: e.sizeY, 
+    			sizeY: e.sizeY,
     			col: e.col,
     			row: e.row,
                 color: e.color || '#0000ff',
-                xparam: e.xparam, 
+                xparam: e.xparam,
     			dashboardId: dashboardId,
                 yparam: e.yparam
     		}
@@ -65,5 +69,21 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     	return $http.put('/api/dashboards/' + dashboardId, thing)
         .then(getData)
     }
+
+    obj.findDataToGraph = function findDataToGraph(obj){
+        if(Array.isArray(obj)){
+          return obj;
+        }else if(typeof(obj) === 'object'){
+          var x;
+          for(var key in obj){
+           x = findDataToGraph(obj[key]);
+           if(x){
+            return x;
+           }
+          }
+          return [obj];
+        }
+  }
+
     return obj;
 });

@@ -11,7 +11,6 @@ router.get('/:id', function (req,res,next) {
 	.catch(next)
 });
 
-
 router.put('/:id', function (req,res,next) { //make this a dashboard instance method
 	let dashboard;
 	Dashboard.findById(req.params.id,{

@@ -1,5 +1,5 @@
-app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
-    function($scope, DashboardFactory, $timeout) {
+app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope',
+    function($scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope) {
       $scope.gridsterOptions = {
         margins: [20, 20],
         columns: 16,
@@ -66,7 +66,7 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
 
       $scope.saveLayout = function () {
         DashboardFactory.saveLayout($scope.dashboard.id, $scope.dashboard.charts)
-      };
+      }
 
       $scope.toggleEditable = function(forced) {
         $scope.editable = (typeof forced === "undefined") ? ! $scope.editable : forced;
@@ -74,4 +74,4 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
         $scope.gridsterOptions.resizable.enabled = $scope.editable;
        }
     }
-  ]);
+]);

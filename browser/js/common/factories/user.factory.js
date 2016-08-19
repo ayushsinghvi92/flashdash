@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory('userFactory', function($http, AuthService){
+app.factory('userFactory', function($http, AuthService, growl){
 	var obj = {};
 
 	obj.updateUser = function(id, data){
@@ -18,7 +18,13 @@ app.factory('userFactory', function($http, AuthService){
 
 	obj.addDashboard = function(id, content){
     	return $http.post('api/users/' + id + '/dashboard', content)
-    	.then(res => res.data);
+    	.then(res => res.data)
+      .catch(function(err) {
+        if (err.status) {
+          growl.error(err.data, {title: err.statusText || '', ttl: 4000, disableCountDown: true});
+        }
+        throw (err);
+      })
   	}
 
 	obj.updateDashboard = function(id, dashId, content){

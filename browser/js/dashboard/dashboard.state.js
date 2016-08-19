@@ -1,6 +1,7 @@
 
 app.config(function ($stateProvider) {
     $stateProvider.state('dashboard', {
+        data: {authenticate: true},
         url: '/dash',
         template: '<gridboxdiv></gridboxdiv>',
         controller: 'dashboardCtrl',

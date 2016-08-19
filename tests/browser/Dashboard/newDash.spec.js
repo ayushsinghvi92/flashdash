@@ -5,7 +5,7 @@ var expect = chai.expect;
 
 describe('New Dashboard', function () {
 
-	beforeEach(module('flashdash'));
+	beforeEach(module('FullstackGeneratedApp'));
 
 	describe('controller `newDashboardCtrl`', function () {
 		let $scope, $state;

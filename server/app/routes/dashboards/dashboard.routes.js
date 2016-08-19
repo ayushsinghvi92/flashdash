@@ -11,6 +11,14 @@ router.get('/:id', function (req,res,next) {
 	.catch(next)
 });
 
+router.get('/:id/charts', function(req, res, next){
+	Chart.findAll({
+		where: {
+			dashboardId : req.params.id
+		}
+	}).then(data => res.send(data))
+	.catch(next)
+})
 
 router.put('/:id', function (req,res,next) { //make this a dashboard instance method
 	let dashboard;

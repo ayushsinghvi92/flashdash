@@ -38,15 +38,17 @@
               <div class="box-header">
                   <h3>{{ widget.name }}</h3>
                   <div class="box-header-btns pull-right">
+                     <a ng-click='editable && updateData(widget)'><i class="glyphicon glyphicon-ok"></i></a>
                      <a ng-click='editable && openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
                      <a ng-click="editable && remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
+
                   </div>
               </div>
               <div class="box-content">
                 <nvd3 options="widget.chart.options"
                       data="widget.chart.data"
                       api="widget.chart.api"
-                      config="config"
+                      config="{refreshDataOnly : true}"
                       events="events"></nvd3>
               </div>
           </div>

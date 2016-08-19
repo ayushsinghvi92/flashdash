@@ -1,5 +1,7 @@
-app.controller('WidgetCtrl', ['$scope', '$uibModal',
-    function($scope, $uibModal) {
+
+app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', 'WidgetSettingsFactory', 'DashboardFactory', '$interval', '$uibModal',
+	function($scope, $modal, $controller, $rootScope, WidgetSettingsFactory, DashboardFactory, $interval, $uibModal) {
+
 
       $scope.remove = function(widget) {
         $scope.dashboard.charts.splice($scope.dashboard.charts.indexOf(widget), 1);
@@ -18,5 +20,16 @@ app.controller('WidgetCtrl', ['$scope', '$uibModal',
         })
       };
 
-    }
-])
+  $scope.updateData = function(widget){
+    if (widget.refreshInterval > 0) {
+        $interval(function(){
+          WidgetSettingsFactory.newSetKeys(widget.dataSource)
+          .then(function(res){
+            widget.chart.data = res[0]
+          })
+        }, widget.refreshInterval + 4000);
+        // 4000 is currently there for testing
+      }
+  };
+}
+  ])

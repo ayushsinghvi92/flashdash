@@ -13,7 +13,6 @@ app.controller('newDashboardCtrl', function (userFactory,$state,$uibModalInstanc
 	    })
 	}
 	$scope.dismiss = function() {
-		console.log('hitting this')
         $uibModalInstance.dismiss();
       };
 })

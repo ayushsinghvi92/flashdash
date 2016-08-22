@@ -38,11 +38,10 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
 
           widget.chart.api.refresh();
 
-          $interval(function(){
+          widget.intervalEnder = $interval(function(){
             $scope.setKeys();
           }, widget.refreshInterval);
         },400)
-
         };
     }])
 

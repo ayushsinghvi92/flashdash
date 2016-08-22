@@ -23,6 +23,7 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
 
           // optional callback fired when item is finished resizing
           stop: function(event, $element, widget) {
+            console.log(widget)
             $timeout(function(){
               if (widget.chart.api) widget.chart.api.update();
             },400)

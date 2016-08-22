@@ -51,7 +51,6 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
           widget.chart.api.refresh();
 
           $interval(function(){
-            console.log('Widgets settings controller');
             $scope.setKeys();
           }, widget.refreshInterval);
         },400)

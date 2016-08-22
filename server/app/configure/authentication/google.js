@@ -46,10 +46,7 @@ module.exports = function (app, db) {
 
     passport.use(new GoogleStrategy(googleCredentials, verifyCallback));
     
-    app.get('/auth/google', function(req,res,next){
-        console.log('hello')
-        next()
-    }, passport.authenticate('google', {
+    app.get('/auth/google', passport.authenticate('google', {
         scope: [
             'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email'

@@ -63,7 +63,6 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     }
 
     obj.setDataInCorrectFormat = function (dataToGraph, widget) {
-        console.log('we are in the setDataInCorrectFormat', widget);
         let dataObj;
         if (widget.type === 'scatterChart' || widget.type === 'discreteBarChart' || widget.type === 'lineChart') {
             dataObj = getDataInKVFormat(dataToGraph)

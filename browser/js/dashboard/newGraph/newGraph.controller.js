@@ -42,7 +42,6 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
 		})
         .then(function(widget){
             $interval(function(){
-                console.log('we in the new graph controller');
                 return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, widget)
                 .then(function(res){
                     widget.chart.data = res[0];

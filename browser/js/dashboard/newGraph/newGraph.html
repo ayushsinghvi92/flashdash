@@ -59,7 +59,7 @@
                </div>
            </div>
        </div>
-	<div ng-repeat='graph in validGraphTypes' class='text-center row' id='graph.name'>
+	<div ng-click = "form.type = graph.name; build();"ng-repeat='graph in validGraphTypes' class='text-center row' id='graph.name'>
 		<h3 class='text-center'>{{graph.name}}</h3>
 		<nvd3 options = 'graph.options' data = "graph.data">
 		</nvd3>

@@ -39,7 +39,6 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     }
 
     $scope.build = function () {
-        console.log($scope.form)
     	let numberOfCharts = addWidgetToDashboard()
 
         let widget = $scope.dashboard.charts[numberOfCharts -1]

@@ -10,6 +10,7 @@ function scatterChartOptions(xparam, yparam){
   return {
     chart: {
       type: 'scatterChart',
+
       margin : {
                     top: 40,
                     right: 20,
@@ -22,7 +23,7 @@ function scatterChartOptions(xparam, yparam){
       showDistX: true,
       showDistY: true,
       duration: 100,
-      x: function(d,i){ return i[xparam]; },   // HACK to remove!
+      x: function(d){ return d[xparam]; },   // HACK to remove!
       y: function(d){ return d[yparam]; },
       xAxis: {
         axisLabel: xparam

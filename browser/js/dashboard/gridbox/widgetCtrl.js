@@ -4,6 +4,7 @@ app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSett
 
 
       $scope.remove = function(widget) {
+        console.log("Cancel is returning", $interval.cancel(widget.intervalEnder), "for", widget.name || "unknown graph");
         $scope.dashboard.charts.splice($scope.dashboard.charts.indexOf(widget), 1);
       };
 
@@ -21,7 +22,14 @@ app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSett
       };
 
       $scope.updateData = function(widget){
-            $interval(function(){
+            if (widget.intervalEnder) {
+              $interval.cancel(widget.intervalEnder);
+            }
+            WidgetSettingsFactory.newSetKeys(widget.dataSource, widget)
+            .then(function(res){
+              widget.chart.data = res[0];
+            });
+            widget.intervalEnder = $interval(function(){
               WidgetSettingsFactory.newSetKeys(widget.dataSource, widget)
               .then(function(res){
                 widget.chart.data = res[0];

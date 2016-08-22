@@ -22,7 +22,7 @@ app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSett
 
       $scope.updateData = function(widget){
             $interval(function(){
-              WidgetSettingsFactory.newSetKeys(widget.dataSource)
+              WidgetSettingsFactory.newSetKeys(widget.dataSource, widget)
               .then(function(res){
                 widget.chart.data = res[0];
               })

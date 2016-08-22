@@ -50,8 +50,8 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
           values: realData || [],
           key: null
           // this breaks previously hardcoded 'this works' string in the tooltip
-          // for key - the key should be the yparameter as 
-          // sepecified by the user - the new graph form or widget settings form 
+          // for key - the key should be the yparameter as
+          // sepecified by the user - the new graph form or widget settings form
           // need to be modified to accomodate this
           // also breaks color which was hardcoded - should also be user input
         }

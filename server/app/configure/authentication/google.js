@@ -27,6 +27,9 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
+                        firstName: profile.name.givenName,
+                        lastName: profile.name.familyName,
+                        email: profile.emails[0].value,
                         google_id: profile.id
                     });
                 }
@@ -42,8 +45,11 @@ module.exports = function (app, db) {
     };
 
     passport.use(new GoogleStrategy(googleCredentials, verifyCallback));
-
-    app.get('/auth/google', passport.authenticate('google', {
+    
+    app.get('/auth/google', function(req,res,next){
+        console.log('hello')
+        next()
+    }, passport.authenticate('google', {
         scope: [
             'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email'

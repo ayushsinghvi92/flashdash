@@ -22,10 +22,10 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
 
     $scope.build = function () {
     	let numberOfCharts = addWidgetToDashboard()
-        
+
         let widget = $scope.dashboard.charts[numberOfCharts -1]
   		widget = customExtend(widget, $scope.form);
-        
+
         WidgetSettingsFactory.newSetKeys($scope.form.dataSource, widget)
         .then(function (dataArr) {
 
@@ -42,7 +42,7 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
 		})
         .then(function(widget){
             $interval(function(){
-                return WidgetSettingsFactory.newSetKeys($scope.form.dataSource)
+                return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, widget)
                 .then(function(res){
                     widget.chart.data = res[0];
                     $scope.dataKeys = res[1];

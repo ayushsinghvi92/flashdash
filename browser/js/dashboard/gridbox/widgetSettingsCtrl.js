@@ -1,24 +1,12 @@
 app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '$rootScope', '$uibModalInstance', 'widget', 'GeneratorFactory', '$interval', 'WidgetSettingsFactory',
     function($scope, $timeout, DashboardFactory, $rootScope, $uibModalInstance, widget, GeneratorFactory, $interval, WidgetSettingsFactory) {
 
-      $scope.widget = widget;
-      if(widget.chart.data && widget.chart.data[0].values.length){
-        $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
-      }
-
-      $scope.widgetTypes = Object.keys(GeneratorFactory);
-
       $scope.form = {
         name: widget.name,
         sizeX: widget.sizeX,
         sizeY: widget.sizeY,
         col: widget.col,
-        row: widget.row,
-        type: widget.type,
-        dataSource: widget.dataSource,
-        yparam: widget.yparam,
-        xparam: widget.xparam,
-        refreshInterval : widget.refreshInterval || 10000000,
+        row: widget.row
       };
      $scope.setKeys = function(){
         return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, $scope.widget)

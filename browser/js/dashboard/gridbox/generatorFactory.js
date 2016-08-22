@@ -22,7 +22,7 @@ function scatterChartOptions(xparam, yparam){
       showDistX: true,
       showDistY: true,
       duration: 100,
-      x: function(d,i){ return i[xparam]; },   // HACK to remove!
+      x: function(d,i){ return d[xparam]; },   // HACK to remove!
       y: function(d){ return d[yparam]; },
       xAxis: {
         axisLabel: xparam

@@ -72,9 +72,6 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         }
         if (widget.type === 'pieChart') {
             dataObj = getDataInPieFormat(dataToGraph, widget)
-            // dataObj.color = widget.color
-            // dataObj.key = widget.yparam
-            // return [dataObj]
             return dataObj;
         }
     }

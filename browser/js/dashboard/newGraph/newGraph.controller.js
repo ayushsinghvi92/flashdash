@@ -2,7 +2,10 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
 	$scope.getKeysAndTypes = function () {
 		DashboardFactory.getDataSource($scope.form.dataSource)
 		.then(DashboardFactory.findDataToGraph)
-		.then(validGraphFactory.getKeysAndTypes)
+		.then(function (realData) {
+           $scope.data = realData
+           return validGraphFactory.getKeysAndTypes (realData)
+        })
 		.then(function (keysAndTypes) {
 			$scope.keyTypePairs = keysAndTypes
 		})
@@ -17,10 +20,26 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     	if(!!$scope.form.yparam) {
     		var ytype = $scope.form.yparam.type
     	}
-    	$scope.validGraphTypes = validGraphFactory.getValidGraphTypes (xtype, ytype)
+    	$scope.validGraphTypes = validGraphFactory
+            .getValidGraphTypes (xtype, ytype)
+            .map(function (type) {
+                let fakeWidget = {
+                    type: type,
+                    xparam: $scope.form.xparam.name,
+                    yparam: $scope.form.yparam.name
+                }
+
+                return {
+                    name: type,
+                    options: returnGraphOptions(type, $scope.form.xparam.name, $scope.form.yparam.name),
+                    data: DashboardFactory.setDataInCorrectFormat($scope.data, fakeWidget)
+                }
+            })
+
     }
 
     $scope.build = function () {
+        console.log($scope.form)
     	let numberOfCharts = addWidgetToDashboard()
         
         let widget = $scope.dashboard.charts[numberOfCharts -1]
@@ -72,5 +91,11 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     	if(widget.xparam) widget.xparam = widget.xparam.name;
     	if(widget.yparam) widget.yparam = widget.yparam.name;
     	return widget;
+    }
+
+    function buildExamples () {
+        $scope.validGraphTypes.forEach(function (e) {
+
+        })
     }
 })

@@ -84,6 +84,18 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
             .position('bottom')
         );
       };
+
+      $scope.showToastForEditing = function(editable) {
+        let response = editable ? 'editing enabled' : 'editing disabled';
+        let theme = editable ? 'success-toast' : 'warning';
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(response)
+            .hideDelay(1000)
+            .theme(theme)
+            .position('top')
+        );
+      };
     },
 
   ]);

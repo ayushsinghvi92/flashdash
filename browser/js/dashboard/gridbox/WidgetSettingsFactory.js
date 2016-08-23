@@ -1,3 +1,4 @@
+
 app.factory('WidgetSettingsFactory', function(DashboardFactory, $interval){
   var factory = {};
 
@@ -6,15 +7,14 @@ app.factory('WidgetSettingsFactory', function(DashboardFactory, $interval){
       .then(function(data){
         let realData = DashboardFactory.findDataToGraph(data);
         let dataInCorrectFormat = DashboardFactory.setDataInCorrectFormat(realData, widget)
-        console.log("++ Infamous line 9 at", new Date(), "for chart", widget.name || "unknown");
         return [dataInCorrectFormat,Object.keys(realData[0])]
       })
   }
 
   factory.stopTicking = function(widget) {
     if(widget.intervalEnder) {
-        console.log("Canceling previous interval ticking in stopTicking: ", $interval.cancel(widget.intervalEnder), "on chart", widget.name || "unknown");
-        widget.intervalEnder = null;
+      $interval.cancel(widget.intervalEnder);
+      widget.intervalEnder = null;
     }
   }
 
@@ -26,7 +26,6 @@ app.factory('WidgetSettingsFactory', function(DashboardFactory, $interval){
     });
 
     if (widget.refreshInterval) {
-      console.log("Setting refresh interval", widget.refreshInterval, "on chart", widget.name || "unknown")
       widget.intervalEnder = $interval(function(){
         factory.newSetKeys(widget.dataSource, widget)
         .then(function(res){

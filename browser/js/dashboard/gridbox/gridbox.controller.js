@@ -51,17 +51,8 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
         $scope.$broadcast('resize');
       });
 
-      $scope.$on('$destroy', function() {
-        $scope.dashboard.charts.forEach(function(chart) {
-          WidgetSettingsFactory.stopTicking(chart);
-        })
-      })
-
       // grid manipulation
       $scope.clear = function() {
-        $scope.dashboard.charts.forEach(function(chart) {
-         WidgetSettingsFactory.stopTicking(chart);
-       })
         $scope.dashboard.charts = [];
       };
 

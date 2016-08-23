@@ -13,12 +13,6 @@ app.controller('dashboardCtrl', ['$stateParams', '$scope', 'DashboardFactory', '
             $scope.dashDesc = $scope.selectedDb.description;
             $scope.editable = false;
 
-            if ($scope.dashboard && $scope.dashboard.charts) {
-                $scope.dashboard.charts.forEach(function(chart) {
-                    WidgetSettingsFactory.stopTicking(chart)
-                })
-            }
-
             DashboardFactory.getDashboard($scope.selectedDb.id)
             .then(db => {
                 $scope.dashboard = db;

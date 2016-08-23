@@ -14,7 +14,7 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
       };
 
       $scope.remove = function() {
-        $scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
+        $scope.dashboard.charts.splice($scope.dashboard.charts.indexOf(widget), 1);
         $uibModalInstance.close();
       };
 
@@ -26,7 +26,6 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
         }
         $uibModalInstance.close(widget);
 
-        console.log("----- call startTicking in widgetSettingsCtrl submit");
         $timeout(function(){
           widget.chart.api.refresh();
           WidgetSettingsFactory.startTicking(widget);

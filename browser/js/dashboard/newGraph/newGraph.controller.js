@@ -1,12 +1,17 @@
 app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, GeneratorFactory, validGraphFactory, DashboardFactory, $uibModalInstance, $interval, $timeout) {
+
+	let data;
     $scope.getKeysAndTypes = function () {
-        DashboardFactory.getDataSource($scope.form.dataSource)
-        .then(DashboardFactory.findDataToGraph)
-        .then(validGraphFactory.getKeysAndTypes)
-        .then(function (keysAndTypes) {
-            $scope.keyTypePairs = keysAndTypes
+		DashboardFactory.getDataSource($scope.form.dataSource)
+		.then(DashboardFactory.findDataToGraph)
+		.then(function (realData) {
+           data = realData
+           return validGraphFactory.getKeysAndTypes (realData)
         })
-    };
+		.then(function (keysAndTypes) {
+			$scope.keyTypePairs = keysAndTypes
+		})
+	};
 
     function returnGraphOptions (type, xparam, yparam) {
         return GeneratorFactory[type].options(xparam, yparam)
@@ -31,11 +36,26 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     };
 
     $scope.showValidGraphs = function () {
-        let xtype = $scope.form.xparam.type
-        if(!!$scope.form.yparam) {
-            var ytype = $scope.form.yparam.type
-        }
-        $scope.validGraphTypes = validGraphFactory.getValidGraphTypes (xtype, ytype)
+    	let xtype = $scope.form.xparam.type
+        let ytype = null
+    	if(!!$scope.form.yparam) {
+    		ytype = $scope.form.yparam.type
+    	}
+    	$scope.validGraphTypes = validGraphFactory
+            .getValidGraphTypes (xtype, ytype)
+            .map(function (type) {
+                let fakeWidget = {
+                    type: type,
+                    xparam: $scope.form.xparam.name,
+                    yparam: $scope.form.yparam.name
+                }
+
+                return {
+                    name: type,
+                    options: returnGraphOptions(type, $scope.form.xparam.name, $scope.form.yparam.name),
+                    data: DashboardFactory.setDataInCorrectFormat(data, fakeWidget)
+                }
+            })
     }
 
     $scope.build = function () {

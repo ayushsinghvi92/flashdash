@@ -44,7 +44,7 @@
                    <div class="form-group">
                        <label class="control-label col-lg-4 col-md-4">Type</label>
                        <div class="col-lg-8 col-md-8">
-                           <select name="type" class="form-control" ng-model="form.type" ng-options='value for value in validGraphTypes'>
+                           <select name="type" class="form-control" ng-model="form.type" ng-options='graph.name as graph.name for graph in validGraphTypes'>
                            </select>
                        </div>
                    </div>
@@ -59,7 +59,11 @@
                </div>
            </div>
        </div>
-
+	<div ng-click = "form.type = graph.name; build();"ng-repeat='graph in validGraphTypes' class='text-center row' id='graph.name'>
+		<h3 class='text-center'>{{graph.name}}</h3>
+		<nvd3 options = 'graph.options' data = "graph.data">
+		</nvd3>
+	</div>
 
        <div class="modal-footer">
            <a ng-click="dismiss()" class="btn btn-default" tabindex="-1"><i class="glyphicon glyphicon-remove"></i>Cancel</a>

@@ -15,5 +15,6 @@ router.use('/gitMosane', require('./gitMosane.route'));
 router.use('/guardianFootball', require('./guardianFootball.route'));
 router.use('/nflPlayers', require('./nflPlayers.route'));
 router.use('/weather', require('./weather.route'));
+router.use('/sinewave', require('./sinewave.route'));
 
 

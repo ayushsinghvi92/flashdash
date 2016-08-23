@@ -99,7 +99,6 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
       };
 
       $scope.showToastForEditing = function(editable) {
-        console.log(editable);
         let response = editable ? 'editing enabled' : 'editing disabled';
         let theme = editable ? 'success-toast' : 'warning';
         $mdToast.show(

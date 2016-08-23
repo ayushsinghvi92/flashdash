@@ -56,17 +56,9 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
                 time = 3000
             }
             widget.refreshInterval = time;
+            WidgetSettingsFactory.startTicking(widget);
             return widget;
-        })
-        .then(function(widget){
-            widget.intervalEnder = $interval(function(){
-                return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, widget)
-                .then(function(res){
-                    widget.chart.data = res[0];
-                    $scope.dataKeys = res[1];
-                })
-            }, widget.refreshInterval);
-        });
+        });       
         $uibModalInstance.dismiss();
 
     }

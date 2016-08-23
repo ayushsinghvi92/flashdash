@@ -2,9 +2,12 @@
 app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSettingsFactory', 'DashboardFactory', '$interval', '$uibModal',
 	function($scope, $controller, $rootScope, WidgetSettingsFactory, DashboardFactory, $interval, $uibModal) {
 
+    $scope.$on('$destroy', function() {
+      console.log("Help!  My scope is being destroyed!  I am", $scope.widget.name)
+    })
 
       $scope.remove = function(widget) {
-        console.log("Cancel is returning", $interval.cancel(widget.intervalEnder), "for", widget.name || "unknown graph");
+        WidgetSettingsFactory.stopTicking(widget);
         $scope.dashboard.charts.splice($scope.dashboard.charts.indexOf(widget), 1);
       };
 
@@ -21,20 +24,12 @@ app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSett
         })
       };
 
+      $scope.widgetReady = function(chart) {
+        WidgetSettingsFactory.startTicking(chart);
+      }
+
       $scope.updateData = function(widget){
-            if (widget.intervalEnder) {
-              $interval.cancel(widget.intervalEnder);
-            }
-            WidgetSettingsFactory.newSetKeys(widget.dataSource, widget)
-            .then(function(res){
-              widget.chart.data = res[0];
-            });
-            widget.intervalEnder = $interval(function(){
-              WidgetSettingsFactory.newSetKeys(widget.dataSource, widget)
-              .then(function(res){
-                widget.chart.data = res[0];
-              })
-            }, widget.refreshInterval);
-      };
-  }
-]);
+       WidgetSettingsFactory.startTicking(widget);
+     };
+   }
+   ]);

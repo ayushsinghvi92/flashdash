@@ -8,13 +8,6 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
         col: widget.col,
         row: widget.row
       };
-     $scope.setKeys = function(){
-        return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, $scope.widget)
-        .then(function(res){
-          widget.chart.data = res[0];
-          $scope.dataKeys = res[1];
-        })
-      }
 
       $scope.dismiss = function() {
         $uibModalInstance.dismiss();
@@ -33,15 +26,11 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
         }
         $uibModalInstance.close(widget);
 
-
+        console.log("----- call startTicking in widgetSettingsCtrl submit");
         $timeout(function(){
-
           widget.chart.api.refresh();
-
-          widget.intervalEnder = $interval(function(){
-            $scope.setKeys();
-          }, widget.refreshInterval);
-        },400)
-        };
+          WidgetSettingsFactory.startTicking(widget);
+          },400)
+      };
     }])
 

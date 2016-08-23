@@ -8,20 +8,13 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
         col: widget.col,
         row: widget.row
       };
-     $scope.setKeys = function(){
-        return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, $scope.widget)
-        .then(function(res){
-          widget.chart.data = res[0];
-          $scope.dataKeys = res[1];
-        })
-      }
 
       $scope.dismiss = function() {
         $uibModalInstance.dismiss();
       };
 
       $scope.remove = function() {
-        $scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
+        $scope.dashboard.charts.splice($scope.dashboard.charts.indexOf(widget), 1);
         $uibModalInstance.close();
       };
 
@@ -33,15 +26,10 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
         }
         $uibModalInstance.close(widget);
 
-
         $timeout(function(){
-
           widget.chart.api.refresh();
-
-          widget.intervalEnder = $interval(function(){
-            $scope.setKeys();
-          }, widget.refreshInterval);
-        },400)
-        };
+          WidgetSettingsFactory.startTicking(widget);
+          },400)
+      };
     }])
 

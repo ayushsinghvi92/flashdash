@@ -52,21 +52,8 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
         $scope.$broadcast('resize');
       });
 
-      $scope.$on('$destroy', function() {
-        $scope.dashboard.charts.forEach(function(chart) {
-          if (chart.intervalEnder) {
-            console.log("Cancel is returning", $interval.cancel(chart.intervalEnder), "for", chart.name || "unknown graph");
-          }
-        })
-      })
-
       // grid manipulation
       $scope.clear = function() {
-          $scope.dashboard.charts.forEach(function(chart) {
-          if (chart.intervalEnder) {
-            console.log("Cancel is returning", $interval.cancel(chart.intervalEnder), "for", chart.name || "unknown graph");
-          }
-        })
         $scope.dashboard.charts = [];
       };
 

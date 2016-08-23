@@ -26,9 +26,6 @@ function scatterChartOptions(xparam, yparam){
       y: function(d){ return d[yparam]; },
       xAxis: {
         axisLabel: xparam
-        // tickFormat: function (d) { // to change later
-        //   return console.log(d);
-        // }
       },
       yAxis: {
               axisLabel: yparam,

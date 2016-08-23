@@ -18,7 +18,7 @@
     }
     .box {
         height: 100%;
-         border: 1px solid #ccc; 
+         border: 1px solid #ccc;
         background-color: #fff;
     }
     .box-header {
@@ -58,4 +58,13 @@
     .gridster-item {
         border: 1px solid black;
     }
+    .sml-right-space {
+        border: solid 1px black;
+    }
+    .md-raised {
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26);
+    }
 }
+
+
+

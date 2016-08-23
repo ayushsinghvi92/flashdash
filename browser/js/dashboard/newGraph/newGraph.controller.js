@@ -1,9 +1,10 @@
 app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, GeneratorFactory, validGraphFactory, DashboardFactory, $uibModalInstance, $interval, $timeout) {
-	$scope.getKeysAndTypes = function () {
+	let data;
+    $scope.getKeysAndTypes = function () {
 		DashboardFactory.getDataSource($scope.form.dataSource)
 		.then(DashboardFactory.findDataToGraph)
 		.then(function (realData) {
-           $scope.data = realData
+           data = realData
            return validGraphFactory.getKeysAndTypes (realData)
         })
 		.then(function (keysAndTypes) {
@@ -17,8 +18,9 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
 
     $scope.showValidGraphs = function () {
     	let xtype = $scope.form.xparam.type
+        let ytype = null
     	if(!!$scope.form.yparam) {
-    		var ytype = $scope.form.yparam.type
+    		ytype = $scope.form.yparam.type
     	}
     	$scope.validGraphTypes = validGraphFactory
             .getValidGraphTypes (xtype, ytype)
@@ -32,7 +34,7 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
                 return {
                     name: type,
                     options: returnGraphOptions(type, $scope.form.xparam.name, $scope.form.yparam.name),
-                    data: DashboardFactory.setDataInCorrectFormat($scope.data, fakeWidget)
+                    data: DashboardFactory.setDataInCorrectFormat(data, fakeWidget)
                 }
             })
 
@@ -90,11 +92,5 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     	if(widget.xparam) widget.xparam = widget.xparam.name;
     	if(widget.yparam) widget.yparam = widget.yparam.name;
     	return widget;
-    }
-
-    function buildExamples () {
-        $scope.validGraphTypes.forEach(function (e) {
-
-        })
     }
 })

@@ -13,3 +13,10 @@
 .user-page-table tr {
   height: 32px;
 }
+
+input {
+  &.changeInfo {
+    width: 100%;
+  }
+}
+

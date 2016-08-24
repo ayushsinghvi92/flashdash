@@ -96,6 +96,9 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     	})
     	return $http.put('/api/dashboards/' + dashboardId, thing)
         .then(getData)
+        .catch(function(e){
+            console.log('We are erroring here', e);
+        })
     }
 
     obj.findDataToGraph = function findDataToGraph(obj){

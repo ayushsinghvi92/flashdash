@@ -11,7 +11,7 @@
         <td>
 
           <a  class="db-name" ui-sref="dashboard({dashToLoad: {name: dashboard.name}})" >{{dashboard.name}}</a>
-         
+
         </td>
         <td>
         <div class='row'>
@@ -33,28 +33,29 @@
     </table>
 
     <div class="col-md-1" />
-
+    <form name="myForm" ng-submit='update(id, user)'>
     <table class="col-md-4 user-page-table">
       <th class='user-header'>Your Account Info</th>
       <tr class="blank_row"></tr>
 
       <tr>
-          <td class='account-text'>First name: <input ng-hide='!userEditingMode' ng-model='user.firstName' type="text" placeholder="{{user.firstName}}"><span ng-hide='userEditingMode'>{{user.firstName}}</span></td>
+          <td class='account-text'>First name: <input class="changeInfo" ng-hide='!userEditingMode' ng-model='user.firstName' type="text" placeholder="{{user.firstName}}" required><span ng-hide='userEditingMode'>{{user.firstName}}</span></td>
       </tr>
       <tr>
-        <td class='account-text'>Last name: <input ng-hide='!userEditingMode' ng-model='user.lastName' type="text" placeholder="{{user.lastName}}"><span ng-hide='userEditingMode'>{{user.lastName}}</span></td>
+        <td class='account-text'>Last name: <input class="changeInfo" ng-hide='!userEditingMode' ng-model='user.lastName' type="text" placeholder="{{user.lastName}}" required><span ng-hide='userEditingMode'>{{user.lastName}}</span></td>
       </tr>
       <tr>
-        <td class='account-text'>Email address: <input ng-hide='!userEditingMode' ng-model='user.email' type="text" placeholder="{{user.email}}"><span ng-hide='userEditingMode'>{{user.email}}</span></td>
+        <td class='account-text'>Email address: <input class="changeInfo" ng-hide='!userEditingMode' ng-model='user.email' type="email" placeholder="{{user.email}}" required><span ng-hide='userEditingMode'>{{user.email}}</span></td>
       </tr>
       <tr class="blank_row"></tr>
       <tr>
-      <td>      <md-button class="md-primary md-hue-1" ng-click='toggleUserEditingMode()'>{{ userEditingMode ? "Lock" : "Edit"}} user info</md-button>
-      <md-button class="md-primary md-hue-1" ng-hide='!userEditingMode' ng-click='update(id, user)'>Update Info</md-button></td>
+      <td>      <md-button class="md-primary md-hue-1" ng-click='toggleUserEditingMode()' ng-hide='userEditingMode'>Edit Info</md-button>
+      <md-button type='submit' class="md-primary md-hue-1" ng-if='userEditingMode'>Update Info</md-button></td>
       </tr>
 
-    </table>
 
+    </table>
+    </form>
 
    </div>
  </div>

@@ -11,10 +11,19 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
     $scope.allDashBoards = data;
   })
   })
-  
+
 	$scope.update = function(id, userData){
     $scope.userEditingMode = false;
-		return userFactory.updateUser(id, userData);
+		return userFactory.updateUser(id, userData)
+    .catch(function(){
+      let warning = $mdDialog.confirm()
+          .title('Looks like someone already has that email')
+          .ariaLabel('Email Taken')
+          .targetEvent(event)
+          .ok('Dismiss')
+          $mdDialog.show(warning);
+          $scope.user.email += '(EMAIL UNAVAILABLE)';
+    })
 	}
 	$scope.delete = function(id){
 		 return userFactory.deleteUser(id);
@@ -50,13 +59,13 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
     .ok('Yes')
     .cancel('No');
   $mdDialog.show(confirm).then(function() {
-    growl.success('Dashboard being deleted', {title: 'Deleted', ttl: 6000, disableCountDown: true}); 
+    growl.success('Dashboard being deleted', {title: 'Deleted', ttl: 6000, disableCountDown: true});
     return userFactory.deleteDashboard(id, dashboardId)
     .then(function(){
       $state.reload()
     })
   }, function() {
-    growl.success('You decided to keep your dashboard', {title: 'Not deleted', ttl: 4000, disableCountDown: true}); 
+    growl.success('You decided to keep your dashboard', {title: 'Not deleted', ttl: 4000, disableCountDown: true});
   });
 };
   });

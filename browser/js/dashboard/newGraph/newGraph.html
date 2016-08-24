@@ -1,77 +1,71 @@
 <div>
-   <form name="_form" class="form-horizontal" ng-submit="build()">
-       <div class="modal-header">
-           <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
-           <h3>Widget Settings</h3>
-       </div>
-
-       <div class="modal-body">
-           <div class="row">
-
-                <div class="col-lg-6 col-md-6">
-                   <div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
-                       <label class="control-label col-lg-4 col-md-4">Data Source</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="dataSource" ng-blur='getKeysAndTypes()' type="text" ng-model="form.dataSource" class="form-control" />
-                       </div>
-                   </div>
-               </div>
+	<form name="_form" class="form-horizontal" ng-submit="build()">
+		<button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+		<h3 class='text-center'>Widget Settings</h3>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-lg-6 col-md-6">
+				<label class="control-label col-lg-4 col-md-4">Data Source</label>
+				<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+					<div class="col-lg-8 col-md-8">
+						<input name="dataSource" ng-blur='getKeysAndTypes()' type="text" ng-model="form.dataSource" class="form-control" />
+					</div>
+				</div>
 			</div>
-			<div class ="row">
-                <div class="col-lg-6 col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">X Parameter</label>
-                       <div class="col-lg-8 col-md-8">
-                           <select name="type" class="form-control" ng-model="form.xparam" ng-options= "{ type : value, name: key } as key + ' : ' + value for (key, value) in keyTypePairs" ng-blur='showValidGraphs()'>
-
-                           </select>
-                       </div>
-                   </div>
-               </div>
-                <div class="col-lg-6 col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">Y Parameter</label>
-                       <div class="col-lg-8 col-md-8">
-                           <select name="type" class="form-control" ng-model="form.yparam" ng-options="{ type : value, name: key } as key + ' : ' + value for (key, value) in keyTypePairs" ng-blur='showValidGraphs()'>
-
-                           </select>
-                       </div>
-                   </div>
-               </div>
+		</div>
+		<div class ="row">
+			<div class="col-lg-6 col-md-6">
+				<div class="form-group">
+					<label class="control-label col-lg-4 col-md-4">X Parameter</label>
+					<div class="col-lg-8 col-md-8">
+						<select name="type" class="form-control" ng-model="form.xparam" ng-options= "{ type : value, name: key } as key + ' : ' + value for (key, value) in keyTypePairs" ng-blur='showValidGraphs()'>
+						</select>
+					</div>
+				</div>
 			</div>
-			<div class='row'>
-               <div class="col-lg-6 col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">Type</label>
-                       <div class="col-lg-8 col-md-8">
-                           <select name="type" class="form-control" ng-model="form.type" ng-options='graph.name as graph.name for graph in validGraphTypes'>
-                           </select>
-                       </div>
-                   </div>
-               </div>
-              <div class="col-lg-6 col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">Refresh Rate(in seconds)</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="refreshRate" type='number' ng-model="form.refreshInterval" class="form-control" />
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-	<div ng-click = "form.type = graph.name; build();"ng-repeat='graph in validGraphTypes' class='text-center row' id='graph.name'>
+			<div class="col-lg-6 col-md-6">
+				<div class="form-group">
+					<label class="control-label col-lg-4 col-md-4">Y Parameter</label>
+					<div class="col-lg-8 col-md-8">
+						<select name="type" class="form-control" ng-model="form.yparam" ng-options="{ type : value, name: key } as key + ' : ' + value for (key, value) in keyTypePairs" ng-blur='showValidGraphs()'>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='row'>
+			<div class="col-lg-6 col-md-6">
+				<div class="form-group">
+					<label class="control-label col-lg-4 col-md-4">Type</label>
+					<div class="col-lg-8 col-md-8">
+						<select name="type" class="form-control" ng-model="form.type" ng-options='graph.name as graph.name for graph in validGraphTypes'>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<div class="form-group">
+					<label class="control-label col-lg-4 col-md-4">Refresh Rate(in seconds)</label>
+					<div class="col-lg-8 col-md-8">
+						<input name="refreshRate" type='number' ng-model="form.refreshInterval" class="form-control" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-click = "form.type = graph.name; build();" ng-repeat='graph in validGraphTypes' class='text-center col-lg-11 col-lg-offset-1 row' id='graph.name'>
 		<h3 class='text-center'>{{graph.name}}</h3>
 		<nvd3 options = 'graph.options' data = "graph.data">
 		</nvd3>
 	</div>
-
-       <div class="modal-footer">
-          <md-button  ng-click="dismiss()"class='md-warn md-raised md-hue-1'>
-				<i class="glyphicon glyphicon-remove"></i> Cancel</a>
-		</md-button>
-          <md-button type="submit" class="md-primary md-raised">
-			<i class="glyphicon glyphicon-ok"></i>Build
-		</md-button>
-       </div>
-   </form>
+	<div class="modal-footer">
+		<md-button  ng-click="dismiss()"class='md-warn md-raised md-hue-1'>
+	<i class="glyphicon glyphicon-remove"></i> Cancel</a>
+	</md-button>
+	<md-button type="submit" class="md-primary md-raised">
+	<i class="glyphicon glyphicon-ok"></i>Build
+	</md-button>
+</div>
+</form>
 </div>

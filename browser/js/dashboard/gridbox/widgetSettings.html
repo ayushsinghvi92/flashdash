@@ -1,70 +1,67 @@
 <div>
    <form name="_form" class="form-horizontal" ng-submit="submit(_form)">
-       <div class="modal-header">
+       <!-- <div class="modal-header"> -->
            <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
-           <h3>Widget Settings</h3>
+           <h3 class='text-center'>Widget Settings</h3>
        </div>
 
        <div class="modal-body">
            <div class="row">          
-                   <div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
-                     
-                   </div>
-               <div class=" col-md-6">
-                   <div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
-                       <label class="control-label col-lg-4 col-md-4">Name</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="name" type="text" ng-model="form.name" class="form-control" />
-                       </div>
-                   </div>
+           		<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+					<div class='text-center'>
+						<div class='col-md-4'>
+                       		<label class="control-label" style="padding-top:13%"> Widget Name</label>
+						</div>
+						<div class='col-md-8'>
+                           <input name="name" style="width:50%" type="text" ng-model="form.name" class="form-control" />
+						</div>
+					</div>
                </div>
-               <div class="col-md-6">
-                   <div class="form-group">
-                   </div>
-               </div>
-           </div>
+           	</div>
+
            <div class="row">
-               <div class=" col-md-6">
-                   <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
-                       <label class="control-label col-lg-4 col-md-4">Width</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="sizeX" ng-model="form.sizeX" class="form-control" />
-                       </div>
-                   </div>
-               </div>
-               <div class=" col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">Height</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="sizeY" ng-model="form.sizeY" class="form-control" />
-                       </div>
-                   </div>
-               </div>
-           </div>
-           <div class="row">
-               <div class=" col-md-6">
-                   <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
-                       <label class="control-label col-lg-4 col-md-4">Column</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="col" ng-model="form.col" class="form-control" />
-                       </div>
-                   </div>
-               </div>
-               <div class="col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">Row</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="row" ng-model="form.row" class="form-control" />
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
+				<div class='col-md-6'>
+                    <label>Width:</label>
+					<input style="width:20%" type="number" name="sizeX" ng-model="form.sizeX" >	
+				</div>	
+				<div class='col-md-6'>
+					<label>Height:</label>
+					<input style="width:20%" type="number" ng-model="form.sizeY" name="sizeY">						
+				</div>
+            </div>
+
+			
+
+		<div class='row'>
+			<div class='col-md-6'>
+				<label>Column:</label>
+				<input style="width:20%" type="number" name="col" ng-model="form.col">
+			</div>
+			<div class='col-md-6'>
+				<label>Row:</label>
+				<input style="width:20%" type="number" name="row" ng-model="form.row">
+			</div>
+		</div>
+
+   </div>
 
        <div class="modal-footer">
-           <a ng-click="remove()" class="btn btn-danger pull-left" style="margin-top: 10px;" tabindex="-1"><i class="glyphicon glyphicon-trash"></i> Delete</a>
-           <a ng-click="dismiss()" class="btn btn-default" tabindex="-1"><i class="glyphicon glyphicon-remove"></i> Cancel</a>
-           <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-ok"></i> Save</button>
+		<!-- <div class='pull-left'> -->
+		<div class='col-md-4'>
+			<md-button ng-click="remove()" class='md-raised md-warn'>
+		  		<i class="glyphicon glyphicon-trash"></i> Delete</a> 
+		 	</md-button>
+		</div>
+		<div class='col-md-4'> 	
+            <md-button  ng-click="dismiss()"class='md-warn md-raised md-hue-1'>
+				<i class="glyphicon glyphicon-remove"></i> Cancel</a>
+				</md-button>
+		</div>
+		<div class='col-md-4'>
+            <md-button type="submit" class="md-primary md-raised"><i class="glyphicon glyphicon-ok"></i>Save</md-button>
+		</div>
+
+		<!-- </div> -->
        </div>
    </form>
 </div>

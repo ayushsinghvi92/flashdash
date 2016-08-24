@@ -53,7 +53,7 @@
                    <div class="form-group">
                        <label class="control-label col-lg-4 col-md-4">Refresh Rate(in seconds)</label>
                        <div class="col-lg-8 col-md-8">
-                           <input name="refreshRate" type='number' type="text" ng-model="form.refreshInterval" class="form-control" />
+                           <input name="refreshRate" type='number' ng-model="form.refreshInterval" class="form-control" />
                        </div>
                    </div>
                </div>
@@ -66,8 +66,12 @@
 	</div>
 
        <div class="modal-footer">
-           <a ng-click="dismiss()" class="btn btn-default" tabindex="-1"><i class="glyphicon glyphicon-remove"></i>Cancel</a>
-           <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-ok"></i>Build</button>
+          <md-button  ng-click="dismiss()"class='md-warn md-raised md-hue-1'>
+				<i class="glyphicon glyphicon-remove"></i> Cancel</a>
+		</md-button>
+          <md-button type="submit" class="md-primary md-raised">
+			<i class="glyphicon glyphicon-ok"></i>Build
+		</md-button>
        </div>
    </form>
 </div>

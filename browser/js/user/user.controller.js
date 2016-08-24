@@ -16,7 +16,13 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
     $scope.userEditingMode = false;
 		return userFactory.updateUser(id, userData)
     .catch(function(){
-      console.log('error handling');
+      let warning = $mdDialog.confirm()
+          .title('Looks like someone already has that email')
+          .ariaLabel('Email Taken')
+          .targetEvent(event)
+          .ok('Dismiss')
+          $mdDialog.show(warning);
+          $scope.user.email += '(EMAIL UNAVAILABLE)';
     })
 	}
 	$scope.delete = function(id){

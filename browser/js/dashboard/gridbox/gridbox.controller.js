@@ -1,5 +1,5 @@
-app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast', '$interval',
-    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast, $interval) {
+app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast', '$interval', '$mdDialog', '$state',
+    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast, $interval, $mdDialog, $state) {
       $scope.gridsterOptions = {
         margins: [25, 25],
         columns: 16,
@@ -58,11 +58,21 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
       };
 
       $scope.addNewGraph = function () {
-        $uibModal.open({
+        if (!$scope.dashboard) {
+          var confirm = $mdDialog.confirm()
+          .title('You need to make a dashboard first!')
+          .ariaLabel('No Dashboard')
+          .targetEvent(event)
+          .ok('Create Dashboard', $state.go('user'))
+          $mdDialog.show(confirm);
+        }else{
+          $uibModal.open({
           scope: $scope,
           templateUrl: '/js/dashboard/newGraph/newGraph.html',
           controller: 'newGraphCtrl'
         })
+        }
+
       }
 
       $scope.saveLayout = function () {
@@ -86,7 +96,7 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
       };
 
       $scope.showToastForEditing = function(editable) {
-        let response = editable ? 'editing enabled' : 'editing disabled';
+        let response = editable ? 'Editing Enabled' : 'Editing Disabled';
         let theme = editable ? 'success-toast' : 'warning';
         $mdToast.show(
           $mdToast.simple()

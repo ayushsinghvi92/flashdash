@@ -1,5 +1,5 @@
-app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast', '$interval', '$mdDialog',
-    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast, $interval, $mdDialog) {
+app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast', '$interval', '$mdDialog', '$state',
+    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast, $interval, $mdDialog, $state) {
       $scope.gridsterOptions = {
         margins: [25, 25],
         columns: 16,
@@ -73,11 +73,10 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
       $scope.addNewGraph = function () {
         if (!$scope.dashboard) {
           var confirm = $mdDialog.confirm()
-          .title('You need a dashboard before you add widgets')
-          .textContent('You do not have a dashboard yet, please go to your user page and create one')
+          .title('You need to make a dashboard first!')
           .ariaLabel('No Dashboard')
           .targetEvent(event)
-          .ok('Yes')
+          .ok('Create Dashboard', $state.go('user'))
           $mdDialog.show(confirm);
         }else{
           $uibModal.open({

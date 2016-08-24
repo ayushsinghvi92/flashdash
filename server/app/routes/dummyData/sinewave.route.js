@@ -2,14 +2,17 @@
 var router = require('express').Router();
 module.exports = router;
 
-// Yahoo Stocks dummy data
-
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   let now = new Date();
-  let data = {
-    when: now % 1000000,
-    fast: Math.sin(Math.PI * (now % 20000) / 50000),
-    slow: Math.sin(Math.PI * (now % 100000) / 50000),
+  let offset = (now / 1000) % 50
+
+  let data = [];
+  for (let i = offset; i <= (100 + offset); i++) {
+    data.push({
+        when: i,
+        slow: Math.sin(Math.PI * i / 50),
+        fast: Math.sin(Math.PI * i / 20)
+    })
   }
 
   res.send(data);

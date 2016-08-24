@@ -11,9 +11,9 @@ let ensureRightUser = AuthFactory.ensureRightUser;  // Requires :userId property
 
 //User's Routes
 router.get('/:userId/dashboards', ensureAuthenticated, ensureRightUser, function (req, res, next) {
-   Dashboard.findAll( 
+   Dashboard.findAll(
     {where: {userId: req.params.userId},
-    order : 'id ASC'}) 
+    order : 'id ASC'})
    .then(function(boards) {
     res.send(boards);
    })
@@ -26,7 +26,9 @@ router.put('/:userId', ensureAuthenticated, ensureRightUser, function(req, res, 
     return user.update(req.body);
   })
   .then(()=> res.send(200))
-  .catch(next);
+  .catch(function(){
+    next();
+  });
 })
 
 router.post('/signup', function(req, res, next){
@@ -51,7 +53,7 @@ router.post('/signup', function(req, res, next){
 router.delete('/:userId', ensureAuthenticated, ensureRightUser, function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
-    return user.destroy(); 
+    return user.destroy();
   })
   .then(function(){
     return req.session.destroy();
@@ -62,7 +64,7 @@ router.delete('/:userId', ensureAuthenticated, ensureRightUser, function(req, re
 
 //User's Dashboard Routes
 router.post('/:userId/dashboard', ensureAuthenticated, ensureRightUser, function(req, res, next){
-  Dashboard.create({ 
+  Dashboard.create({
       userId: req.params.userId,
       name: req.body.name,
       description: req.body.description

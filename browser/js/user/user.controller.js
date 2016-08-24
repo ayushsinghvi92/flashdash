@@ -11,10 +11,13 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
     $scope.allDashBoards = data;
   })
   })
-  
+
 	$scope.update = function(id, userData){
     $scope.userEditingMode = false;
-		return userFactory.updateUser(id, userData);
+		return userFactory.updateUser(id, userData)
+    .catch(function(){
+      console.log('error handling');
+    })
 	}
 	$scope.delete = function(id){
 		 return userFactory.deleteUser(id);
@@ -50,13 +53,13 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
     .ok('Yes')
     .cancel('No');
   $mdDialog.show(confirm).then(function() {
-    growl.success('Dashboard being deleted', {title: 'Deleted', ttl: 6000, disableCountDown: true}); 
+    growl.success('Dashboard being deleted', {title: 'Deleted', ttl: 6000, disableCountDown: true});
     return userFactory.deleteDashboard(id, dashboardId)
     .then(function(){
       $state.reload()
     })
   }, function() {
-    growl.success('You decided to keep your dashboard', {title: 'Not deleted', ttl: 4000, disableCountDown: true}); 
+    growl.success('You decided to keep your dashboard', {title: 'Not deleted', ttl: 4000, disableCountDown: true});
   });
 };
   });

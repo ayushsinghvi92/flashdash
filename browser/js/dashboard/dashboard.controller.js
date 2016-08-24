@@ -4,7 +4,7 @@ app.controller('dashboardCtrl', ['$stateParams', '$scope', 'DashboardFactory', '
 
     $scope.editable = false;
     $scope.dashName = $stateParams.name || "You have no dashboards";
-    $scope.dashDesc = $stateParams.description || "Please create a dashboard";
+    $scope.dashDesc = $stateParams.description || "Go to 'Your Page' to make a new dashboard!";
     $scope.dashboard = null;
 
     $scope.update = function() {

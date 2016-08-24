@@ -42,10 +42,10 @@
           <div class="box ng-scope" ng-controller='WidgetCtrl'>
               <div class="box-header">
                   <h3>{{ widget.name }}</h3>
-                  <div class="box-header-btns pull-right">
-                     <a ng-click='editable && updateData(widget)'><i class="glyphicon glyphicon-play"></i></a>
-                     <a ng-click='editable && openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
-                     <a ng-click="editable && remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
+                  <div ng-show='editable' class="box-header-btns pull-right">
+                     <a class='widget-button' ng-click='editable && updateData(widget)'><i class="glyphicon glyphicon-refresh"></i></a>
+                     <a class='widget-button' ng-click='editable && openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
+                     <a class='widget-button' ng-click="editable && remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
 
                   </div>
               </div>

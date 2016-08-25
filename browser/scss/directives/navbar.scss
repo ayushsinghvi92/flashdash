@@ -1,4 +1,6 @@
-
+.navbar {
+  background-color: powderblue;
+}
 .nav-size{
   font-size: 20px;
 }
@@ -19,7 +21,7 @@ md-toast.md-warning-toast-theme {
 }
 .about-info{
   margin-top:50px;
-  margin-bottom: 50px;
+  margin-bottom: 0;
 }
 .b{
   width:80%;
@@ -35,7 +37,7 @@ md-toast.md-warning-toast-theme {
 }
 .user-title{
   font-size:46px;
-  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 .account-text{
   font-size: 20px;

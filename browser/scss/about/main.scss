@@ -1,7 +1,8 @@
 #about {
-
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
+  padding: 0;
+  margin-top: 0;
   @include clearfix;
 
   p {
@@ -35,4 +36,15 @@
     }
   }
 
+
 }
+
+.imageSpace {
+    margin-bottom: 0;
+}
+
+.container {
+  background-color: powderblue;
+  width : 100%;
+}
+

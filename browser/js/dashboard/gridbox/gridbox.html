@@ -1,6 +1,6 @@
 <section id="dashboard">
   <div class="row">
-    <div class="col-sm-4 searchDash">
+    <div class="col-sm-3 searchDash">
   <md-autocomplete class='md-primary md-hue-1' md-selected-item="selectedDb" md-search-text='searchText' md-selected-item-change='update()' md-item-text='dashboard.name' md-items="dashboard in dashboardList" md-select-on-match='true' md-require-match='true' md-match-case-insensitive='true'>
     <md-item-template>
       <span md-highlight-text='searchText'>{{dashboard.name}}</span>
@@ -9,6 +9,9 @@
           No matches found for "{{searchText}}".
     </md-not-found>
   </md-autocomplete>
+
+     </div>
+     <div  class="col-sm-1">
 
      </div>
     <div class="col-md-4 text-center">

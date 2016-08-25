@@ -7,11 +7,11 @@ router.get('/', function (req, res) {
   let offset = (now / 1000) % 50
 
   let data = [];
-  for (let i = offset; i <= (100 + offset); i++) {
+  for (let i = 0; i <= 100; i++) {
     data.push({
         when: i,
-        slow: Math.sin(Math.PI * i / 50),
-        fast: Math.sin(Math.PI * i / 20)
+        slow: Math.sin(Math.PI * (i + offset) / 50),
+        fast: Math.sin(Math.PI * (i + offset) / 20)
     })
   }
 

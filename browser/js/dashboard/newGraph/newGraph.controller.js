@@ -36,8 +36,11 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     };
 
     $scope.showValidGraphs = function () {
-    	let xtype = $scope.form.xparam.type
-        let ytype = null
+    	let xtype = null;
+        let ytype = null;
+        if(!!$scope.form.xparam) {
+            xtype = $scope.form.xparam.type
+        }
     	if(!!$scope.form.yparam) {
     		ytype = $scope.form.yparam.type
     	}
@@ -46,13 +49,13 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
             .map(function (type) {
                 let fakeWidget = {
                     type: type,
-                    xparam: $scope.form.xparam.name,
-                    yparam: $scope.form.yparam.name
+                    xparam: $scope.form.xparam? $scope.form.xparam.name : null,
+                    yparam: $scope.form.yparam? $scope.form.yparam.name : null
                 }
 
                 return {
                     name: type,
-                    options: returnGraphOptions(type, $scope.form.xparam.name, $scope.form.yparam.name),
+                    options: returnGraphOptions(type, fakeWidget.xparam, fakeWidget.yparam),
                     data: DashboardFactory.setDataInCorrectFormat(data, fakeWidget)
                 }
             })
@@ -68,7 +71,7 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
         .then(function (dataArr) {
 
             widget.chart.api.updateWithData(dataArr[0])
-            widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name));
+            widget.chart.api.updateWithOptions(returnGraphOptions(widget.type, widget.xparam, widget.yparam));
             let time = Number($scope.form.refreshInterval) * 1000
             if(!time){
                 time = 10000000;

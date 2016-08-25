@@ -33,6 +33,12 @@ app.factory('validGraphFactory', function () {
 				validGraphTypes.push('histogram');
 				return validGraphTypes;
 			}
+
+			else if (ytype && !xtype) {
+				validGraphTypes.push('lineChart')
+				validGraphTypes.push('scatterChart')
+				return validGraphTypes
+			}
 			else if (ytype === 'number') {
 			
 			// IF Y IS NUMBER AND =======>

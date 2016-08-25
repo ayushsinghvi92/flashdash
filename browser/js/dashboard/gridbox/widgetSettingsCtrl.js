@@ -6,7 +6,8 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
         sizeX: widget.sizeX,
         sizeY: widget.sizeY,
         col: widget.col,
-        row: widget.row
+        row: widget.row,
+        color: widget.color
       };
 
       $scope.dismiss = function() {

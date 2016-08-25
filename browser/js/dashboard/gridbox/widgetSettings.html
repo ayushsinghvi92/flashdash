@@ -28,6 +28,10 @@
 					<label>Row: </label>
 					<input type="number" class ="form-control" name="row" ng-model="form.row">
 				</div>
+				<div ng-show="widget.type == 'lineChart' || widget.type == 'scatterChart'" class='col-md-6'>
+					<label>Color: </label>
+					<input type="color" class ="form-control" name="row" ng-model="form.color">
+				</div>
 			</div>
 		</div>
 		<div class="modal-footer">

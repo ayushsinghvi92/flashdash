@@ -22,7 +22,7 @@ function scatterChartOptions(xparam, yparam){
       showDistX: true,
       showDistY: true,
       duration: 100,
-      x: function(d,i){ return d[xparam]; },   // HACK to remove!
+      x: function(d,i){ return xparam? d[xparam] : i }, 
       y: function(d){ return d[yparam]; },
       xAxis: {
         axisLabel: xparam
@@ -45,10 +45,10 @@ function scatterChartOptions(xparam, yparam){
                     bottom: 40,
                     left: 55
                 },
-                x: function(d){ return d[xparam]; },   // HACK to remove!
+                x: function(d, i){ return xparam? d[xparam] : i; },
                 y: function(d){ return d[yparam]; },
                 xAxis: {
-                    axisLabel: 'Index',
+                    axisLabel: xparam? xparam : "Index",
                     axisLabelDistance: -5
                 },
                 yAxis: {

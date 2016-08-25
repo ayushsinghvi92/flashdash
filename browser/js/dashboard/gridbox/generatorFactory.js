@@ -45,9 +45,8 @@ function scatterChartOptions(xparam, yparam){
                     bottom: 40,
                     left: 55
                 },
-                x: function(d, i){ return i; },   // HACK to remove!
+                x: function(d){ return d[xparam]; },   // HACK to remove!
                 y: function(d){ return d[yparam]; },
-                useInteractiveGuideline: true,
                 xAxis: {
                     axisLabel: 'Index',
                     axisLabelDistance: -5
@@ -71,7 +70,7 @@ function scatterChartOptions(xparam, yparam){
                 margin : {
                     top: 40,
                     right: 20,
-                    bottom: 30,
+                    bottom: 80,
                     left: 55
                 },
                 x: function(d){return d[xparam]; },
@@ -82,11 +81,12 @@ function scatterChartOptions(xparam, yparam){
                 },
                 duration: 500,
                 xAxis: {
-                    axisLabel: 'X Axis',
-                    axisLabelDistance: -10
+                    axisLabel: xparam,
+                    axisLabelDistance: -10,
+                    rotateLabels: -45
                 },
                 yAxis: {
-                    axisLabel: 'Y Axis',
+                    axisLabel: yparam,
                     axisLabelDistance: -10
                 }
             }
@@ -113,38 +113,7 @@ function scatterChartOptions(xparam, yparam){
             }
         };
   }
-  function pieChartData() {
-    return [
-            {
-                key: "One",
-                y: 5
-            },
-            {
-                key: "Two",
-                y: 2
-            },
-            {
-                key: "Three",
-                y: 9
-            },
-            {
-                key: "Four",
-                y: 7
-            },
-            {
-                key: "Five",
-                y: 4
-            },
-            {
-                key: "Six",
-                y: 3
-            },
-            {
-                key: "Seven",
-                y: .5
-            }
-        ];
-  }
+
 
   function candlestickBarChartOptions(xparam, yparam) {
     return {

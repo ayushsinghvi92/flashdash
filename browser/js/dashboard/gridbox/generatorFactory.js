@@ -462,8 +462,7 @@ function scatterChartOptions(xparam, yparam){
       options: discreteBarChartOptions,
     },
     pieChart: {
-      options: pieChartOptions,
-      data: pieChartData
+      options: pieChartOptions
     },
     candlestickBarChart: {
       options: candlestickBarChartOptions,

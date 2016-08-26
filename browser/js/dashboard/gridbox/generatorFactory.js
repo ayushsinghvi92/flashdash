@@ -63,6 +63,22 @@ function scatterChartOptions(xparam, yparam){
         };
   }
 
+  function bulletChartOptions(xparam, yparam) {
+    return {
+            chart: {
+                type: 'bulletChart',
+                // x: function(d){return d[xparam]; },
+                // y: function(d){return d[yparam]; },
+                height: 120,
+                duration:500,
+                margin: {
+                  top:50,
+                  bottom: 25
+                }
+            }
+        };
+  }
+
   function discreteBarChartOptions(xparam, yparam) {
     return {
             chart: {
@@ -425,6 +441,12 @@ function scatterChartOptions(xparam, yparam){
     }
   return {
     lineChart: {
+      options: lineChartOptions,
+    },
+    bulletChart: {
+      options: bulletChartOptions,
+    },
+    histogram: {
       options: lineChartOptions,
     },
     discreteBarChart: {

@@ -1,5 +1,5 @@
-app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast', '$interval', '$mdDialog', '$state',
-    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast, $interval, $mdDialog, $state) {
+app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast', '$interval', '$mdDialog', '$state', '$document',
+    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast, $interval, $mdDialog, $state, $document) {
       $scope.gridsterOptions = {
         margins: [25, 25],
         columns: 16,
@@ -100,6 +100,7 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
         let theme = editable ? 'success-toast' : 'warning';
         $mdToast.show(
           $mdToast.simple()
+            .parent($document[0].querySelector("#navid"))
             .textContent(response)
             .hideDelay(1000)
             .theme(theme)

@@ -6,14 +6,10 @@ router.get('/', function (req, res) {
   let now = new Date();
   let offset = (now / 1000) % 50
 
-  let data = [];
-  for (let i = 0; i <= 100; i++) {
-    data.push({
-        when: i,
-        slow: Math.sin(Math.PI * (i + offset) / 50),
-        fast: Math.sin(Math.PI * (i + offset) / 20)
-    })
-  }
+  let data = {
+        slow: Math.abs(Math.sin(Math.PI * offset / 50) * 100.0),
+        fast: Math.abs(Math.sin(Math.PI * offset / 20) * 100.0)
+    }
 
   res.send(data);
 });

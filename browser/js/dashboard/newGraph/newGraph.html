@@ -1,12 +1,14 @@
 <div>
 	<form name="_form" class="form-horizontal" ng-submit="build()">
+	<div class='modal-header'>
 		<button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
 		<h3 class='text-center'>Widget Settings</h3>
+	</div>
 	<div class="modal-body">
 		<div class="row">
 			<div class="col-lg-6 col-md-6">
-				<label class="control-label col-lg-4 col-md-4">Data Source</label>
-				<div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+				<div class='form-group'>
+					<label class="control-label col-lg-4 col-md-4">Data Source</label>
 					<div class="col-lg-8 col-md-8">
 						<input name="dataSource" ng-blur='getKeysAndTypes()' type="text" ng-model="form.dataSource" class="form-control" />
 					</div>

@@ -29,9 +29,16 @@ app.factory('validGraphFactory', function () {
 			
 			// IF ONLY X IS SELECTED - HISTOGRAM WITH Y AS THE FREQUENCY - X CAN BE EITHER A STRING OR NUMBER
 			
-			if(!ytype && xtype) {
-				validGraphTypes.push('histogram');
-				return validGraphTypes;
+			// if(!ytype && xtype) {
+			// 	validGraphTypes.push('histogram');
+			// 	return validGraphTypes;
+			// }
+
+			if (ytype && !xtype) {
+				validGraphTypes.push('lineChart')
+				validGraphTypes.push('scatterChart')
+				validGraphTypes.push('bulletChart')
+				return validGraphTypes
 			}
 			else if (ytype === 'number') {
 			

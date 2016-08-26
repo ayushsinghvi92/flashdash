@@ -2,9 +2,12 @@
   <div class="text-center">
     <h1 class="user-title" ><strong> Welcome, {{user.firstName}}, to your account page!</strong></h1>
   </div>
-  <div class="container">
+  <div class="container userInfo">
   <div class='row'>
-    <table class='col-lg-8 user-page-table'>
+    <div class="col-lg-1">
+
+    </div>
+    <table class='col-lg-7 user-page-table'>
       <th class='user-header'>Here are your current dashboards</th>
       <tr class="blank_row"></tr>
        <tr ng-repeat='dashboard in allDashBoards'>

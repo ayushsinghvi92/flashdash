@@ -37,7 +37,6 @@
 }
 
 .container {
-  background-color: powderblue;
   width : 100%;
 }
 
@@ -45,6 +44,8 @@
   font-size: 18pt;
   text-align: center;
   color: powderblue;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .aboutFlash {
@@ -57,4 +58,17 @@
   text-align: center;
   text-decoration: underline;
   color: powderblue;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bottomAbout {
+  margin-top: 0;
+  background-color: powderblue;
+}
+
+.generalInfo {
+  margin : 0;
+  padding: 0;
+  background-color: powderblue;
 }

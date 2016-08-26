@@ -2,7 +2,6 @@
 .blank_row
 {
     height: 10px !important; /* Overwrite any previous rules */
-    background-color: #FFFFFF;
 }
 
 .btn-destroy {
@@ -20,3 +19,15 @@ input {
   }
 }
 
+#userPage {
+  background-color: white;
+  margin-top: 0;
+}
+
+#userPage row {
+  background-color: white;
+}
+
+.userInfo {
+  margin-top: 100px;
+}

@@ -1,17 +1,11 @@
 #about {
-
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
+  padding: 0;
+  margin-top: 0;
   @include clearfix;
 
-  p {
-    width: 40%;
-    margin: 0 auto;
-    text-align: justify;
-    font-size: 22px;
-    font-weight: 300;
-    float: left;
-  }
+
 
   .carousel {
     float: right;
@@ -35,4 +29,47 @@
     }
   }
 
+
+}
+
+.imageSpace {
+    margin-bottom: 0;
+}
+
+.container {
+  width : 100%;
+}
+
+.largerP {
+  font-size: 18pt;
+  text-align: center;
+  color: powderblue;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.aboutFlash {
+  background-color: #01283f;
+}
+
+.flashInfo {
+  font-size: 24pt;
+  font-style: bold;
+  text-align: center;
+  text-decoration: underline;
+  color: powderblue;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bottomAbout {
+  margin: 0;
+  background-color: powderblue;
+}
+
+.generalInfo {
+  margin : 0;
+  padding: 0;
+  background-color: powderblue;
+  padding-top: 50px;
 }

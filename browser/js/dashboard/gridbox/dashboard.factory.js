@@ -74,6 +74,14 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
             dataObj = getDataInPieFormat(dataToGraph, widget)
             return dataObj;
         }
+        if (widget.type === 'bulletChart') {
+            return {
+                 "title": widget.yparam,
+                 "subtitle": "(0 - 100)",
+                 "ranges": [100],
+                 "measures": [dataToGraph[0][widget.yparam]],
+             }
+        }
     }
 
 
